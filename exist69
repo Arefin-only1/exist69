@@ -202,7 +202,7 @@
 
     <div class="bottom-nav">
         <a href="#"><i class="fas fa-home"></i>Home</a>
-        <a href="https://t.me/team_bx1"><i class="fas fa-share-alt"></i>Share</a>
+        <a href="https://t.me/@AREFIN_ONLY1"><i class="fas fa-share-alt"></i>Share</a>
         <a href="https://t.me/@AREFIN_ONLY1" target="_blank"><i class="fas fa-user-tie"></i>Developer</a>
     </div>
 
