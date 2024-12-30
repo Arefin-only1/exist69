@@ -250,7 +250,7 @@
         }
 
         function showRewardedAd() {
-            window.open("https://www.profitablecpmrate.com/b91i5v1mwv?key=051585afa710067c7d4d069f3c06f7a2", "_blank");
+            window.open("https://www.profitablecpmrate.com/ermkw0udng?key=493e1249a0d229881e9c7fc163ab9964", "_blank");
             points += 1; 
             balance += 0.002;
             updateBalance();
