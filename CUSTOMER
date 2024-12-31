@@ -187,11 +187,13 @@
             <div class="user-details">
                 <h2 id="userName">Your Name</h2>
                 <p>Number - <span id="userNumber">000000</span></p>
+                <p>Referral ID: <span id="referralID">Not Generated</span></p>
             </div>
         </div>
         <div class="balance-info">
             <p>Points: <span id="userPoints">0</span></p>
             <p>Balance: $<span id="userBalance">0.00</span></p>
+            <button id="withdrawButton" style="background-color: yellow; padding: 10px 15px; font-size: 14px;" onclick="showWithdrawModal()">Withdraw</button>
         </div>
     </div>
 
@@ -202,15 +204,16 @@
 
     <div class="bottom-nav">
         <a href="#"><i class="fas fa-home"></i>Home</a>
-        <a href="https://t.me/@AREFIN_ONLY1"><i class="fas fa-share-alt"></i>Share</a>
-        <a href="https://t.me/@AREFIN_ONLY1" target="_blank"><i class="fas fa-user-tie"></i>Developer</a>
+        <a href="https://t.me/RABIB_FINANCEbot"><i class="fas fa-share-alt"></i>Share</a>
+        <a href="https://t.me/rabibfinance" target="_blank"><i class="fas fa-user-tie"></i>support</a>
     </div>
 
     <div class="modal" id="userModal">
         <div class="modal-content">
-            <h3>What's your name and number?</h3>
+            <h3>What's your name, number, and referral ID?</h3>
             <input type="text" id="inputName" placeholder="Enter your name">
             <input type="text" id="inputNumber" placeholder="Enter your number">
+            <input type="text" id="inputReferralID" placeholder="Referral ID (Auto-generated)" readonly>
             <button onclick="saveUserInfo()">Save</button>
         </div>
     </div>
@@ -219,14 +222,21 @@
         let points = 0;
         let balance = 0;
 
+        // Function to generate a unique referral ID
+        function generateReferralID() {
+            return 'REF-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const savedName = localStorage.getItem('userName');
             const savedNumber = localStorage.getItem('userNumber');
+            const savedReferralID = localStorage.getItem('userReferralID');
             const userModal = document.getElementById('userModal');
             
-            if (savedName && savedNumber) {
+            if (savedName && savedNumber && savedReferralID) {
                 document.getElementById('userName').textContent = savedName;
                 document.getElementById('userNumber').textContent = savedNumber;
+                document.getElementById('referralID').textContent = savedReferralID;
             } else {
                 userModal.classList.add('active');
             }
@@ -241,10 +251,13 @@
             const number = document.getElementById('inputNumber').value;
 
             if (name && number) {
+                const referralID = generateReferralID();
                 localStorage.setItem('userName', name);
                 localStorage.setItem('userNumber', number);
+                localStorage.setItem('userReferralID', referralID);
                 document.getElementById('userName').textContent = name;
                 document.getElementById('userNumber').textContent = number;
+                document.getElementById('referralID').textContent = referralID;
                 document.getElementById('userModal').classList.remove('active');
             }
         }
@@ -262,6 +275,21 @@
             localStorage.setItem('userPoints', points);
             localStorage.setItem('userBalance', balance.toFixed(2));
         }
+
+        // Withdraw Modal
+        function showWithdrawModal() {
+            const confirmWithdraw = confirm("Are you sure you want to withdraw all of your money?");
+            if (confirmWithdraw) {
+                withdrawBalance();
+            }
+        }
+
+        function withdrawBalance() {
+            balance = 0;
+            updateBalance();
+            window.location.href = "https://t.me/RABIB_FINANCEbot";  // Redirect to your bot
+        }
+
     </script>
 </body>
 </html>
